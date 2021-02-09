@@ -4,71 +4,85 @@ using System.Text;
 
 namespace AnimalEx3._2
 {
-
-    interface Person
+    
+    interface Person // create separate cs.file
     {
-
-        public string Talk();
+        string Talk();
     }
-    abstract class Animal : Person
+    abstract class Animal //: Person
     {
-        public string Name;
-        public int Age;
-        public double Weigth;
-        
-        public string Species;
+        //public string Name;
+        //public int Age;
+        //public double Weigth;
+        //public string Species;
+
+        // These exist in the background
+        //private string name;
+        //private int age;
+        //private double weigth;
+        //private string species;
+
+        public string Name { get; set; }
+        public int Age { get; set; }
+        public double Weigth { get; set; }
+        public string Species { get; set; }
 
         public Animal(string name, int age, double weigth, string animal)
         {
             Name = name;
             Age = age;
             Weigth = weigth;
-           
             Species = animal;
-         
-            
         }
 
-        public Animal()
+        //public Animal()
+        //{
+
+        //}
+
+        //public string Talk()
+        //{
+        //    return "I can talk like a human";
+        //}
+
+        //public virtual string DoSound(string animal)
+        //{
+
+        //    animal = this.Species;
+        //    var sound = "";
+
+        //    if (animal == "Horse")
+        //    {
+        //        sound = "Hiiiiii";
+        //        return sound;
+        //    }
+        //    else if (animal == "Dog")
+        //    {
+        //        sound = "Woff!!Woff!";
+        //        return sound ;
+        //    }
+        //    else if (animal == "Wolf")
+        //    {
+        //        sound = "Auuuuuuuuu!";
+        //        return sound ;
+        //    }
+        //    else if (animal == "Bird")
+        //    {
+        //        sound = "Cipcirip!Cipcirip!";
+        //        return sound ;
+        //    }
+        //    else
+        //    {
+        //        return "no sound";
+        //    }
+        //}
+
+        public abstract string DoSound();
+
+        public virtual string Stats()
         {
-
-        }
-
-        public string Talk()
-        {
-            return "I can talk like a human";
-        }
-
-        public virtual string DoSound( string animal)
-        {
-            
-            animal = this.Species;
-            var sound = "";
-
-            if (animal == "Horse")
-            {
-                sound = "Hiiiiii";
-                return sound;
-            }
-            else if (animal == "Dog")
-            {
-                sound = "Woff!!Woff!";
-                return sound ;
-            }
-            else if (animal == "Wolf")
-            {
-                sound = "Auuuuuuuuu!";
-                return sound ;
-            }
-            else if (animal == "Bird")
-            {
-                sound = "Cipcirip!Cipcirip!";
-                return sound ;
-            }
-            else
-            {
-                return "no sound";
-            }
+            var temp = $"Name: {Name}, Age: {Age}, Weight: {Weigth}, Species: {Species}, ";
+            return temp;
         }
 
     }
@@ -80,18 +94,28 @@ namespace AnimalEx3._2
         {
             Species = "Horse";
             Prop = prop;
-            this.Galoop();
-            this.DoSound("Horse");
+            //this.Galoop();
+            //this.DoSound("Horse");
 
         }
+
+
+        public override string DoSound()
+        {
+            return "*neigh*";
+        }
+
 
         public string Galoop()
         {
             return this.Prop;
         }
 
-       
-        
+        public override string Stats()
+        {
+            return base.Stats() + $"Prop: {Prop}";
+        }
+
     }
 
     class Dog : Animal
@@ -101,9 +125,13 @@ namespace AnimalEx3._2
         {
             Species = "Dog";
             Prop = prop;
-            this.HumansFriend();
-            this.DoSound($"{this.Species}");
+            
 
+        }
+
+        public override string DoSound()
+        {
+            return "SOUND"; 
         }
 
         public string HumansFriend()
@@ -121,9 +149,13 @@ namespace AnimalEx3._2
         {
             Species = "Hedgehog";
             Sting = sting;
-            this.ISting();
-            this.DoSound($"{this.Species}");
+            
 
+        }
+
+        public override string DoSound()
+        {
+            return "SOUND";
         }
 
         public string ISting()
@@ -138,9 +170,12 @@ namespace AnimalEx3._2
         {
             Species = "Wolf";
             Prop = prop;
-            this.Wolfy();
-            this.DoSound($"{this.Species}");
 
+        }
+
+        public override string DoSound()
+        {
+            return "SOUND"; 
         }
 
         public string Wolfy()
@@ -156,9 +191,11 @@ namespace AnimalEx3._2
         {
             Species = "Bird";
             Sing = sing;
-            this.ISing();
-            this.DoSound($"{this.Species}");
+        }
 
+        public override string DoSound()
+        {
+            return "SOUND"; 
         }
 
         public virtual string ISing()
@@ -177,9 +214,12 @@ namespace AnimalEx3._2
         {
             Species = "Worm";
             Crawl = crawl;
-            this.ICrawl();
-            this.DoSound($"{this.Species}");
 
+        }
+
+        public override string DoSound()
+        {
+            return "SOUND";
         }
 
         public string ICrawl()
@@ -258,12 +298,13 @@ namespace AnimalEx3._2
         public Wolfman(string name, int age, double weigth, string animal, string prop = "I like full moons!") : base(name, age, weigth, animal) 
         {
             Species = "Hybrid";
-            this.Talk();
+            //this.Talk();
         }
 
-      
-
-
+        public string Talk()
+        {
+            return "I CAN TALK!";
+        }
     }
 
 
